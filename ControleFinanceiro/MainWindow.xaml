@@ -1,0 +1,97 @@
+﻿<Window x:Class="ControleFinanceiro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControleFinanceiro"
+        mc:Ignorable="d"
+        Title="Controle de Gastos" Height="450" Width="800" Background="Aquamarine">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox
+            Header="Salvar Gasto"
+            FontSize="14"
+            Background="White"
+            Margin="10">
+            <StackPanel HorizontalAlignment="Center">
+
+                <Label Grid.Column="0"
+                       Content="Titulo"
+                       FontSize="14"
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Top"
+                       Margin="0,4,0,0"/>
+
+                <TextBox Grid.Column="0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Margin="0,0"  
+                         TextWrapping="Wrap"
+                         Height="20"
+                         Width="180"/>
+
+                <Label Grid.Column="0"
+                       Content="Valor"
+                       FontSize="14"
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Top"
+                       Margin="0,4,0,0"/>
+
+                <TextBox Grid.Column="0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         TextWrapping="Wrap"
+                         Height="20"
+                         Width="180"/>
+
+                <Label Grid.Column="0"
+                       Content="Descrição"
+                       FontSize="14"
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Top"
+                       Margin="0,4,0,0"/>
+
+                <TextBox Grid.Column="0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top" 
+                         TextWrapping="Wrap"
+                         Height="120"
+                         Width="180"/>
+
+                <Label Grid.Column="0"
+                       Content="Data"
+                       FontSize="14"
+                       HorizontalAlignment="Left"  
+                       VerticalAlignment="Top"
+                       Margin="0,4,0,0"/>
+
+                <DatePicker Grid.Column="0"
+                            VerticalAlignment="Top"
+                            Background="White"/>
+
+                <Button Grid.Column="0"
+                        Content="Salvar"
+                        FontSize="14"
+                        Foreground="White"
+                        Background="Green"
+                        Margin="0,20"/>
+            </StackPanel>
+        </GroupBox>
+
+
+        <ListView x:Name="listGastos" Grid.Column="1" Margin="0,25,25,25" ItemsSource="{Binding ElementName=listGastos, Path= Gastos}">
+
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Width="100" Header="Titulo" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Width="100" Header="Valor" DisplayMemberBinding="{Binding AmountSpent}"/>
+                    <GridViewColumn Width="100" Header="Data" DisplayMemberBinding="{Binding Date}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
