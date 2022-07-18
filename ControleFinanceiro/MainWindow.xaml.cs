@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
 
 namespace ControleFinanceiro
 {
@@ -9,20 +11,44 @@ namespace ControleFinanceiro
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Gasto> Gastos;
-
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            Gastos = new ObservableCollection<Gasto>()
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            string titleSpending = txt_title.Text.ToString();
+            double valueSpending = double.Parse(txt_value.Text.ToString());
+            string valueFormat   = valueSpending.ToString("C");
+            string description   = txt_description.Text.ToString();
+            var dateUser = Convert.ToDateTime(date_day_buy.Text).ToString("dd/MM/yyyy");
+
+            List<Gasto> gasto = new List<Gasto>();
+
+            gasto.Add(new Gasto()
             {
-                new Gasto(){Title = "arroz",   AmountSpent = "4.85",  Date = DateTime.Now},
-                new Gasto(){Title = "feijão",  AmountSpent = "12,75", Date = DateTime.Now},
-                new Gasto(){Title = "farinha", AmountSpent = "2,50",  Date = DateTime.Now}
+                Title       = titleSpending,
+                AmountSpent = valueFormat,
+                Description = description,
+                Date        = dateUser
+            });
 
-            };
-            listGastos.ItemsSource = Gastos;
+            try
+            {
+                listGastos.Items.Add(gasto);
+            }
+            catch
+            {
+                MessageBox.Show("Informe os dados");
+            }
+
+        }
+
+        private void txt_value_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
         }
     }
 }

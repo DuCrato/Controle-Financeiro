@@ -9,9 +9,8 @@ namespace ControleFinanceiro
     {
         string title,
                amountSpent,
-               description;
-
-        DateTime date;
+               description,
+               date;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,7 +53,7 @@ namespace ControleFinanceiro
             }
         }
 
-        public DateTime Date
+        public string Date
         {
             get => date;
             set

@@ -13,82 +13,106 @@
         </Grid.ColumnDefinitions>
 
         <GroupBox
-            Header="Salvar Gasto"
             FontSize="14"
             Background="White"
             Margin="10">
+
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold">Salvar Gasto</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            
             <StackPanel HorizontalAlignment="Center">
 
-                <Label Grid.Column="0"
-                       Content="Titulo"
-                       FontSize="14"
-                       HorizontalAlignment="Left"  
-                       VerticalAlignment="Top"
-                       Margin="0,4,0,0"/>
+                <Label 
+                    Grid.Column="0"
+                    Content="Titulo"
+                    FontSize="14"
+                    HorizontalAlignment="Left"  
+                    VerticalAlignment="Top"
+                    Margin="0,4,0,0"/>
 
-                <TextBox Grid.Column="0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         Margin="0,0"  
-                         TextWrapping="Wrap"
-                         Height="20"
-                         Width="180"/>
+                <TextBox 
+                    x:Name="txt_title"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,0"  
+                    TextWrapping="Wrap"
+                    Height="20"
+                    Width="180"/>
 
-                <Label Grid.Column="0"
-                       Content="Valor"
-                       FontSize="14"
-                       HorizontalAlignment="Left"  
-                       VerticalAlignment="Top"
-                       Margin="0,4,0,0"/>
+                <Label 
+                    Grid.Column="0"
+                    Content="Valor"
+                    FontSize="14"
+                    HorizontalAlignment="Left"  
+                    VerticalAlignment="Top"
+                    Margin="0,4,0,0"/>
 
-                <TextBox Grid.Column="0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         TextWrapping="Wrap"
-                         Height="20"
-                         Width="180"/>
+                <TextBox 
+                    x:Name="txt_value"
+                    PreviewTextInput="txt_value_PreviewTextInput"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    TextWrapping="Wrap"
+                    Height="20"
+                    Width="180"/>
 
-                <Label Grid.Column="0"
-                       Content="Descrição"
-                       FontSize="14"
-                       HorizontalAlignment="Left"  
-                       VerticalAlignment="Top"
-                       Margin="0,4,0,0"/>
+                <Label
+                    Grid.Column="0"
+                    Content="Descrição"
+                    FontSize="14"
+                    HorizontalAlignment="Left"  
+                    VerticalAlignment="Top"
+                    Margin="0,4,0,0"/>
 
-                <TextBox Grid.Column="0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top" 
-                         TextWrapping="Wrap"
-                         Height="120"
-                         Width="180"/>
+                <TextBox 
+                    x:Name="txt_description"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" 
+                    TextWrapping="Wrap"
+                    Height="120"
+                    Width="180"/>
 
-                <Label Grid.Column="0"
-                       Content="Data"
-                       FontSize="14"
-                       HorizontalAlignment="Left"  
-                       VerticalAlignment="Top"
-                       Margin="0,4,0,0"/>
+                <Label 
+                    Grid.Column="0"
+                    Content="Data"
+                    FontSize="14"
+                    HorizontalAlignment="Left"  
+                    VerticalAlignment="Top"
+                    Margin="0,4,0,0"/>
 
-                <DatePicker Grid.Column="0"
-                            VerticalAlignment="Top"
-                            Background="White"/>
+                <DatePicker
+                    x:Name="date_day_buy"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    Background="White"/>
 
-                <Button Grid.Column="0"
-                        Content="Salvar"
-                        FontSize="14"
-                        Foreground="White"
-                        Background="Green"
-                        Margin="0,20"/>
+                <Button 
+                    x:Name="btn_save"
+                    Grid.Column="0"
+                    Content="Salvar"
+                    FontSize="14"
+                    Foreground="White"
+                    Background="Green"
+                    Margin="0,20"
+                    Click="btn_save_Click"/>
+               
             </StackPanel>
         </GroupBox>
 
 
-        <ListView x:Name="listGastos" Grid.Column="1" Margin="0,25,25,25" ItemsSource="{Binding ElementName=listGastos, Path= Gastos}">
+        <ListView x:Name="listGastos" Grid.Column="1" Margin="0,21,25,11" ItemsSource="{Binding ElementName=listGastos, Path= Gastos}">
 
             <ListView.View>
                 <GridView >
                     <GridViewColumn Width="100" Header="Titulo" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Width="100" Header="Valor" DisplayMemberBinding="{Binding AmountSpent}"/>
+                    <GridViewColumn Width="188" Header="Descrição" DisplayMemberBinding="{Binding Description}"/>
                     <GridViewColumn Width="100" Header="Data" DisplayMemberBinding="{Binding Date}"/>
                 </GridView>
             </ListView.View>
