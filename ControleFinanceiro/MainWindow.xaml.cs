@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ControleFinanceiro
 {
@@ -20,13 +21,13 @@ namespace ControleFinanceiro
         {
             if (txt_title.Text == "")
             {
-                MessageBox.Show("Campo título em branco!!!","ERROR");
+                MessageBox.Show("Campo título em branco!!!", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }else if (txt_value.Text == "")
             {
-                MessageBox.Show("Campo valor em branco!!!");
+                MessageBox.Show("Campo valor em branco!!!", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }else if (date_day_buy.Text == "")
             {
-                MessageBox.Show("Campo data em branco!!!");
+                MessageBox.Show("Campo data em branco!!!", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -64,6 +65,27 @@ namespace ControleFinanceiro
         {
             var textBox = sender as TextBox;
             e.Handled = Regex.IsMatch(e.Text, "[^0-9,]+");
+        }
+
+        private void btn_delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (listGastos.Items.Count == 0)
+                {
+                    MessageBox.Show("Lista vazia", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                else 
+                {
+                    if (MessageBox.Show("Deseja realmente excluir?", "Deletar gasto", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        listGastos.Items.RemoveAt(listGastos.Items.IndexOf(listGastos.SelectedItem));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Selecione um valor da lista", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
