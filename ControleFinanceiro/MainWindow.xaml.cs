@@ -18,37 +18,52 @@ namespace ControleFinanceiro
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            string titleSpending = txt_title.Text.ToString();
-            double valueSpending = double.Parse(txt_value.Text.ToString());
-            string valueFormat   = valueSpending.ToString("C");
-            string description   = txt_description.Text.ToString();
-            var dateUser = Convert.ToDateTime(date_day_buy.Text).ToString("dd/MM/yyyy");
-
-            List<Gasto> gasto = new List<Gasto>();
-
-            gasto.Add(new Gasto()
+            if (txt_title.Text == "")
             {
-                Title       = titleSpending,
-                AmountSpent = valueFormat,
-                Description = description,
-                Date        = dateUser
-            });
-
-            try
+                MessageBox.Show("Campo título em branco!!!","ERROR");
+            }else if (txt_value.Text == "")
             {
+                MessageBox.Show("Campo valor em branco!!!");
+            }else if (date_day_buy.Text == "")
+            {
+                MessageBox.Show("Campo data em branco!!!");
+            }
+            else
+            {
+                string titleSpending = txt_title.Text.ToString();
+                double valueSpending = double.Parse(txt_value.Text.ToString());
+                string valueFormat = valueSpending.ToString("C");
+                string description = txt_description.Text.ToString();
+                var dateUser = Convert.ToDateTime(date_day_buy.Text).ToString("dd/MM/yyyy");
+
+                List<Gasto> gasto = new List<Gasto>();
+
+                gasto.Add(new Gasto()
+                {
+                    Title = titleSpending,
+                    AmountSpent = valueFormat,
+                    Description = description,
+                    Date = dateUser
+                });
+
                 listGastos.Items.Add(gasto);
-            }
-            catch
-            {
-                MessageBox.Show("Informe os dados");
-            }
 
+                ClearTextBox();
+            }
+        }
+
+        private void ClearTextBox()
+        {
+            txt_title.Text       = "";
+            txt_value.Text       = "";
+            txt_description.Text = "";
+            date_day_buy.Text    = "";
         }
 
         private void txt_value_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             var textBox = sender as TextBox;
-            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9,]+");
         }
     }
 }

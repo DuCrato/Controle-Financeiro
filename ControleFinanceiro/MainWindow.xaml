@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControleFinanceiro"
         mc:Ignorable="d"
-        Title="Controle de Gastos" Height="450" Width="800" Background="Aquamarine">
+        Title="Controle de Gastos" Height="450" Width="800" Background="PaleTurquoise" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -27,11 +27,11 @@
 
                 <Label 
                     Grid.Column="0"
-                    Content="Titulo"
+                    Content="Título"
                     FontSize="14"
                     HorizontalAlignment="Left"  
                     VerticalAlignment="Top"
-                    Margin="0,4,0,0"/>
+                    Margin="0,6,0,0"/>
 
                 <TextBox 
                     x:Name="txt_title"
@@ -110,7 +110,7 @@
 
             <ListView.View>
                 <GridView >
-                    <GridViewColumn Width="100" Header="Titulo" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Width="100" Header="Título" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Width="100" Header="Valor" DisplayMemberBinding="{Binding AmountSpent}"/>
                     <GridViewColumn Width="188" Header="Descrição" DisplayMemberBinding="{Binding Description}"/>
                     <GridViewColumn Width="100" Header="Data" DisplayMemberBinding="{Binding Date}"/>
